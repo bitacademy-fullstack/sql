@@ -1,4 +1,4 @@
--- 함수 연습
+-- 문자 함수 연습
 
 select upper( "seoUl" ), ucase( "Seoul" ) from dual;
 
