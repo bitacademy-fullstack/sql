@@ -11,7 +11,8 @@ where emp_no = 10944;
 order by hire_date asc;
 
 --문제3
-      select gender, count(emp_no)
+      select if(gender="M", "남자", "여자")  as "성별", 
+	           count(emp_no)
        from employees
  group by gender;
  

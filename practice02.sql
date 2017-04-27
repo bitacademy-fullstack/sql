@@ -25,7 +25,8 @@ select  max( salary ), min( salary )
 --문제6
 select floor( period_diff( date_format( now(), "%Y%m"), date_format( max(birth_date), "%Y%m") ) /12  ) as "제일 어린 사원 나이",
 		 floor( period_diff( date_format( now(), "%Y%m"), date_format( min(birth_date), "%Y%m") ) /12  ) as "최고 연장자  사원 나이"
-  from employees  
+  from employees;
+    
 
      
   
