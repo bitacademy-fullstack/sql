@@ -91,9 +91,48 @@ where emp_no =any (  select emp_no
 
 
 -- 각 부서별로 최고 월급을 받는 직원의 이름과 월급 출력  
+    select b.dept_no, max(c.salary) as max_salary
+      from employees a, dept_emp b, salaries c
+    where a.emp_no = b.emp_no
+       and c.emp_no = a.emp_no
+	   and c.to_date = "9999-01-01"
+	   and b.to_date = "9999-01-01"
+group by b.dept_no;	
+	
+-- 1) where 절에 subquery를 사용하는 방법
+ select a.first_name, c.dept_no, b.salary
+  from employees a, salaries b, dept_emp c
+where a.emp_no = b.emp_no
+   and a.emp_no = c.emp_no
+   and b.to_date = "9999-01-01"
+   and c.to_date = "9999-01-01"
+   and ( c.dept_no, b.salary ) =any (  select b.dept_no, max(c.salary) as max_salary
+                                                  from employees a, dept_emp b, salaries c
+                                                where a.emp_no = b.emp_no
+                                                   and c.emp_no = a.emp_no
+	                                               and c.to_date = "9999-01-01"
+	                                               and b.to_date = "9999-01-01"
+                                            group by b.dept_no );     
+	
+	  
 
-
-
+ select a.first_name, c.dept_no, b.salary
+  from employees a, 
+         salaries b, 
+		 dept_emp c,
+         (      select b.dept_no, max(c.salary) as max_salary
+                                                  from employees a, dept_emp b, salaries c
+                                                where a.emp_no = b.emp_no
+                                                   and c.emp_no = a.emp_no
+	                                               and c.to_date = "9999-01-01"
+	                                               and b.to_date = "9999-01-01"
+                                            group by b.dept_no ) d		 
+where a.emp_no = b.emp_no
+   and a.emp_no = c.emp_no
+   and c.dept_no = d.dept_no
+   and b.to_date = "9999-01-01"
+   and c.to_date = "9999-01-01"
+   and b.salary = d.max_salary;
 
 
 
