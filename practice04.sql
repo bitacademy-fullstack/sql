@@ -21,11 +21,11 @@
 	           and b.to_date = "9999-01-01"
           group by b.dept_no ) d		 
 where a.emp_no = b.emp_no
-  and a.emp_no = c.emp_no
-  and c.dept_no = d.dept_no
-  and b.to_date = "9999-01-01"
-  and c.to_date = "9999-01-01"
-  and b.salary = d.max_salary;
+   and a.emp_no = c.emp_no
+   and c.dept_no = d.dept_no
+   and b.to_date = "9999-01-01"
+   and c.to_date = "9999-01-01"
+   and b.salary = d.max_salary;
 
 --문제3.
 --현재, 자신의 부서 평균 급여보다 연봉(salary)이 많은 사원의 사번, 이름과 연봉을 조회하세요 
@@ -41,11 +41,11 @@ where a.emp_no = b.emp_no
 	           and b.to_date = "9999-01-01"
           group by b.dept_no ) d		 
 where a.emp_no = b.emp_no
-  and a.emp_no = c.emp_no
-  and c.dept_no = d.dept_no
-  and b.to_date = "9999-01-01"
-  and c.to_date = "9999-01-01"
-  and b.salary > d.avg_salary;
+   and a.emp_no = c.emp_no
+   and c.dept_no = d.dept_no
+   and b.to_date = "9999-01-01"
+   and c.to_date = "9999-01-01"
+   and b.salary > d.avg_salary;
 
 
 --문제4.
@@ -84,36 +84,36 @@ select a.emp_no, a.first_name, b.title, c.salary
         order by avg(c.salary ) desc
            limit 0, 1) e
  where a.emp_no = b.emp_no
-   and a.emp_no = c.emp_no
-   and a.emp_no = d.emp_no
-   and d.dept_no = e.dept_no;
+    and a.emp_no = c.emp_no
+    and a.emp_no = d.emp_no
+    and d.dept_no = e.dept_no;
     
 --문제6.
 --평균 연봉이 가장 높은 부서는? 
-  select c.dept_no, avg(b.salary) as avg_salary
-    from employees a,
-         salaries b,
-         dept_emp c
-   where a.emp_no = b.emp_no
-     and a.emp_no = c.emp_no
-     and c.to_date = "9999-01-01"
-     and b.to_date = "9999-01-01"
+     select c.dept_no, avg(b.salary) as avg_salary
+      from employees a,
+             salaries b,
+             dept_emp c
+    where a.emp_no = b.emp_no
+       and a.emp_no = c.emp_no
+       and c.to_date = "9999-01-01"
+       and b.to_date = "9999-01-01"
 group by c.dept_no
-order by avg_salary desc
-   limit 0, 1;
+ order by avg_salary desc
+      limit 0, 1;
 
 --문제7.
 --평균 연봉이 가장 높은 직책?
-  select c.title, avg(b.salary) as avg_salary
-    from employees a,
-         salaries b,
-         titles c
-   where a.emp_no = b.emp_no
-     and a.emp_no = c.emp_no
-     and c.to_date = "9999-01-01"
-     and b.to_date = "9999-01-01"
+     select c.title, avg(b.salary) as avg_salary
+      from employees a,
+             salaries b,
+             titles c
+    where a.emp_no = b.emp_no
+       and a.emp_no = c.emp_no
+       and c.to_date = "9999-01-01"
+       and b.to_date = "9999-01-01"
 group by c.title
-order by avg_salary desc
+ order by avg_salary desc
    limit 0, 1;
    
 --문제8.
