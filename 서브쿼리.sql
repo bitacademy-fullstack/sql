@@ -53,7 +53,7 @@ where a.emp_no = b.emp_no
        and c.to_date="9999-01-01"
 group by c.title
  order by avg_salary
-      limit 0, 1;     
+      limit 0, 1;  
 
 --2) from 절을 이용한 subquery
 select min( avg_salary )
